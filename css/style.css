@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items:center ;
+  justify-content: center;
+  background-image: linear-gradient(180deg, rgb(100, 34, 223), rgb(32, 32, 22))
+  
+}
+
+input, textarea{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.1rem;
+
+}
+
+.btn {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  flex-direction: column;
+
+}
+  .container{
+    justify-content: column
+    ;
+  }
+
+  .card-body{
+    width: flex;
+    height:flex;
+    margin: 8px;
+  }
+  
