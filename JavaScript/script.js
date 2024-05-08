@@ -1,44 +1,85 @@
-'use scrict';
+'use strict';
+
+const _setElementTextContentHelper = (valor, nodeID) => {
+  document.getElementById(nodeID).textContent = valor;
+};
+
+const _setElementValueHelper = (valor, nodeID) => {
+  document.getElementById(nodeID).value = valor;
+};
+
+const getNewUserData = () => {
+  const novoNome = document.getElementById('nomeInput').value;
+  const novaIdade = document.getElementById('idadeInput').value;
+  const novaRua = document.getElementById('ruaInput').value;
+  const novoBairro = document.getElementById('bairroInput').value;
+  const novoEstado = document.getElementById('estadoInput').value;
+  const novaBiografia = document.getElementById('biografiaInput').value;
+  return {
+    novoNome,
+    novaIdade,
+    novaRua,
+    novoBairro,
+    novoEstado,
+    novaBiografia,
+  };
+};
+
 const hideUpdateUserModal = () => {
   $('#staticBackdrop').modal('hide');
 };
-const _setElementTextContentHelper = (valor , nodeID) =>{
-  document.getElementById(nodeID).textContent = valor;
-}
 
-const _setElementValueHelper = (valor , nodeID) =>{
-  document.getElementById(nodeID).value = valor;
-} 
+const clearFormModalInputs = () => {
+  const formInputsElementsIds = [
+    'nomeInput',
+    'idadeInput',
+    'ruaInput',
+    'bairroInput',
+    'estadoInput',
+    'biografiaInput',
+  ];
+  formInputsElementsIds.forEach(elementId => {
+    _setElementValueHelper('', elementId);
+  });
+};
 
-const getNewUserData = () =>{
-  const nome = document.getElementById('nomeInput').value;
-  const idade = document.getElementById('idadeInput').value;
-  const rua = document.getElementById('ruaInput').value;
-  const bairro = document.getElementById('bairroInput').value;
-  const estado = document.getElementById('estadoInput').value;
-  const biografia = document.getElementById('biografiaInput').value;
-}
+const updateUserDataCard = newUserData => {
+  const elementIdNewValueMapper = {
+    nome: newUserData.novoNome,
+    idade: newUserData.novaIdade,
+    rua: newUserData.novaRua,
+    bairro: newUserData.novoBairro,
+    estado: newUserData.novoEstado,
+    biografia: newUserData.novaBiografia,
+  };
+  const entries = Object.entries(elementIdNewValueMapper);
 
+  entries.forEach(entry => {
+    const elementId = entry.at(0);
+    const newElementValue = entry.at(1);
+
+    _setElementTextContentHelper(newElementValue, elementId);
+  });
+};
 document
   .getElementById('updateForm')
   .addEventListener('submit', function (event) {
     event.preventDefault();
 
-   
+    const newUserData = getNewUserData();
 
-    document.getElementById('nome').textContent = nome;
-    document.getElementById('idade').textContent = idade;
-    document.getElementById('rua').textContent = rua;
-    document.getElementById('bairro').textContent = bairro;
-    document.getElementById('estado').textContent = estado;
-    document.getElementById('biografia').textContent = biografia;
+    updateUserDataCard(newUserData);
 
-    hideUserFormModal();
+    hideUpdateUserModal();
 
-    document.getElementById('nomeInput').value = '';
-    document.getElementById('idadeInput').value = '';
-    document.getElementById('ruaInput').value = '';
-    document.getElementById('bairroInput').value = '';
-    document.getElementById('estadoInput').value = '';
-    document.getElementById('biografiaInput').value = '';
+    clearFormModalInputs();
   });
+  document.getElementById('imageInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    const displayImage = document.getElementById('displayImage');
+  
+    if (file) {
+      displayImage.src = URL.createObjectURL(file);
+    }
+  });
+  
