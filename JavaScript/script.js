@@ -1,14 +1,30 @@
 'use scrict';
-// Função para atualizar as informações do usuário
-document.getElementById('updateForm').addEventListener('submit', function (event) {
+const hideUpdateUserModal = () => {
+  $('#staticBackdrop').modal('hide');
+};
+const _setElementTextContentHelper = (valor , nodeID) =>{
+  document.getElementById(nodeID).textContent = valor;
+}
+
+const _setElementValueHelper = (valor , nodeID) =>{
+  document.getElementById(nodeID).value = valor;
+} 
+
+const getNewUserData = () =>{
+  const nome = document.getElementById('nomeInput').value;
+  const idade = document.getElementById('idadeInput').value;
+  const rua = document.getElementById('ruaInput').value;
+  const bairro = document.getElementById('bairroInput').value;
+  const estado = document.getElementById('estadoInput').value;
+  const biografia = document.getElementById('biografiaInput').value;
+}
+
+document
+  .getElementById('updateForm')
+  .addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const nome = document.getElementById('nomeInput').value;
-    const idade = document.getElementById('idadeInput').value;
-    const rua = document.getElementById('ruaInput').value;
-    const bairro= document.getElementById('bairroInput').value;
-    const estado = document.getElementById('estadoInput').value;
-    const biografia = document.getElementById('biografiaInput').value;
+   
 
     document.getElementById('nome').textContent = nome;
     document.getElementById('idade').textContent = idade;
@@ -17,7 +33,7 @@ document.getElementById('updateForm').addEventListener('submit', function (event
     document.getElementById('estado').textContent = estado;
     document.getElementById('biografia').textContent = biografia;
 
-    $('#staticBackdrop').modal('hide');
+    hideUserFormModal();
 
     document.getElementById('nomeInput').value = '';
     document.getElementById('idadeInput').value = '';
@@ -26,4 +42,3 @@ document.getElementById('updateForm').addEventListener('submit', function (event
     document.getElementById('estadoInput').value = '';
     document.getElementById('biografiaInput').value = '';
   });
-
