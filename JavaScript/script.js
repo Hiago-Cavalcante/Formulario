@@ -74,12 +74,13 @@ document
 
     clearFormModalInputs();
   });
-  document.getElementById('imageInput').addEventListener('change', function(event) {
+document
+  .getElementById('imageInput')
+  .addEventListener('change', function (event) {
     const file = event.target.files[0];
     const displayImage = document.getElementById('displayImage');
-  
+
     if (file) {
       displayImage.src = URL.createObjectURL(file);
     }
   });
-  
