@@ -82,5 +82,6 @@ document
 
     if (file) {
       displayImage.src = URL.createObjectURL(file);
+      hideUpdateUserModal();
     }
   });
